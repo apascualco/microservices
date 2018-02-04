@@ -1,17 +1,30 @@
 server:
-  port: ${PORT:8998}
+  port: ${PORT:8762}
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 10
-    non-secure-port: ${PORT:8998}
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
   client:
     serviceUrl:
-      defaultZone: http://localhost:8999/registry/
+      defaultZone: http://localhost:8761/registry/
 
+# custom attribute for the actuator info endpoint
+info:
+  app:
+    name: circuit-breaker
+
+# give the application a name
 spring:
   application:
-     name: hystrix-dashboard-service
+    name: circuit-breaker
 
+management:
+  security:
+    enabled: false
 
-
+logging:
+  level:
+      - ".=info"
+      - "com.apascualco.microservices=debug"
+      - "org.springframework=info"
