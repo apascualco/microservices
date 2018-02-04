@@ -1,0 +1,17 @@
+server:
+  port: ${PORT:8999} #
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/registry/
+
+logging:
+  level:
+      - ".=info"
+      - "com.apascualco.microservices=debug"
+      - "org.springframework=info"
